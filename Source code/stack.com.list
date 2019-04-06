@@ -1,0 +1,89 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+stack.com -- emu8086 assembler version: 4.08  
+ 
+[ 4/6/2019  --  10:37:37 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       ; this sample shows how the stack works.
+[   2]        :                                       ; click 'stack' button in emulator to see the contents of the stack.
+[   3]        :                                       
+[   4]        :                                       ; stack is important element in computer architecture.
+[   5]        :                                       
+[   6]        :                                       ; this code does nothing useful, except printing "Hi" in the end.
+[   7]        :                                       
+[   8]        :                                       name "stack"
+[   9]        :                                       
+[  10]        :                                       org     100h   ; create tiny com file.
+[  11]        :                                       
+[  12]    0100: B8 34 12                              mov     ax, 1234h
+[  13]    0103: 50                                    push    ax
+[  14]        :                                       
+[  15]    0104: BA 78 56                              mov     dx, 5678h
+[  16]    0107: 52                                    push    dx
+[  17]        :                                       
+[  18]    0108: 5B                                    pop     bx
+[  19]    0109: 59                                    pop     cx
+[  20]        :                                       
+[  21]        :                                       ; function call pushes ip value of the next instruction:
+[  22]        :                                       
+[  23]    010A: E8 28 00                              call    tfunc
+[  24]        :                                       
+[  25]    010D: B8 90 78                              mov     ax, 7890h
+[  26]    0110: 50                                    push    ax
+[  27]    0111: 5B                                    pop     bx
+[  28]        :                                       
+[  29]        :                                       ; interrupts are like funtions,
+[  30]        :                                       ; but in addition they push code segment into the stack
+[  31]    0112: B8 03 00                              mov     ax, 3
+[  32]    0115: CD 10                                 int     10h    ; set standart video mode.
+[  33]        :                                       
+[  34]        :                                       ; a typical use of stack is to set segment registers.
+[  35]        :                                       ; set ds to video memory segment:
+[  36]    0117: B8 00 B8                              mov     ax, 0b800h
+[  37]    011A: 50                                    push    ax
+[  38]    011B: 1F                                    pop     ds
+[  39]        :                                       
+[  40]        :                                       ; print "hi":
+[  41]    011C: C6 06 70 01 48                        mov     [170h], 'H'
+[  42]    0121: C6 06 72 01 69                        mov     [172h], 'i'
+[  43]        :                                       
+[  44]        :                                       ; color attribute for 'h'
+[  45]    0126: C6 06 71 01 CE                        mov     [171h], 11001110b
+[  46]        :                                       
+[  47]        :                                       ; color attribute for 'i'
+[  48]    012B: C6 06 73 01 9E                        mov     [173h], 10011110b
+[  49]        :                                       
+[  50]        :                                       
+[  51]        :                                       ; wait for any key press....
+[  52]    0130: B4 00                                 mov     ah, 0
+[  53]    0132: CD 16                                 int     16h
+[  54]        :                                       
+[  55]        :                                       ; here we "pop" the ip value,
+[  56]        :                                       ; and return control to the operating system:
+[  57]    0134: C3                                    ret
+[  58]        :                                       
+[  59]        :                                       ; the test procedure:
+[  60]        :                                       
+[  61]    0135:                                       tfunc   proc
+[  62]        :                                       
+[  63]    0135: 33 DB                                 xor     bx, bx
+[  64]    0137: 33 C9                                 xor     cx, cx
+[  65]        :                                       
+[  66]        :                                       ; here we "pop" the ip value,
+[  67]        :                                       ; and return control to the main program:
+[  68]    0139: C3                                    ret
+[  69]        :                                       endp
+[  70]        :                                       
+[  71]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================

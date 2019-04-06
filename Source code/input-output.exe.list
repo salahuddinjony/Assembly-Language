@@ -1,0 +1,76 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+input-output.exe -- emu8086 assembler version: 4.08  
+ 
+[ 4/2/2019  --  11:36:28 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .MODEL SMALL
+[   2]        :                                       .STACK 100H
+[   3]        :                                       .CODE
+[   4]        :                                       
+[   5]    0100:                                       MAIN PROC
+[   6]        :                                       
+[   7]        :                                       
+[   8]    0100: B4 01                                 MOV AH,1
+[   9]    0102: CD 21                                 INT 21H      ;INPUT
+[  10]    0104: 8A D8                                 MOV BL,AL
+[  11]        :                                       
+[  12]        :                                       
+[  13]    0106: B4 02                                 MOV AH,2
+[  14]    0108: 8A D3                                 MOV DL,BL    ;OUTPUT
+[  15]    010A: CD 21                                 INT 21H
+[  16]        :                                       
+[  17]        :                                       
+[  18]        :                                       
+[  19]    010C:                                       EXIT:
+[  20]        :                                       
+[  21]    010C: B4 4C                                 MOV AH, 4CH
+[  22]    010E: CD 21                                 INT 21H
+[  23]        :                                       MAIN ENDP
+[  24]        :                                       END MAIN
+[  25]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 10      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 00      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: BB      -   check sum (l.byte)
+0013: 16      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 10      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================
